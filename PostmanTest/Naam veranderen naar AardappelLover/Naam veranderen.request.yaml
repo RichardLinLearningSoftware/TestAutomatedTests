@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://localhost:8080/api/v1/accounts
+method: PUT
+body:
+  type: json
+  content: '{"accountName":"AardappelLover","accountId":1}'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Http is 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });"
+    language: text/javascript
+order: 1790843820286

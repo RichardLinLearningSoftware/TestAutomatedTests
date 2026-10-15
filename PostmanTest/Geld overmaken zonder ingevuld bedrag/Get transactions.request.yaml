@@ -1,0 +1,38 @@
+$kind: http-request
+url: http://localhost:8080/api/v1/transactions/1
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Json has correct properties\", function () {\r
+
+      \    const jsonData = pm.response.json();\r
+
+      \    jsonData.transactions.forEach(function (transactions) {\r
+
+      \        pm.expect(transactions).to.have.property(\"id\");\r
+
+      \        pm.expect(transactions.id).to.be.a(\"number\");\r
+
+      \r
+
+      \        pm.expect(transactions).to.have.property(\"amount\");\r
+
+      \        pm.expect(transactions.amount).to.be.a(\"number\");\r
+
+      \r
+
+      \        pm.expect(transactions).to.have.property(\"description\");\r
+
+      \        pm.expect(transactions.description).to.be.a(\"string\");\r
+
+      \r
+
+      \        pm.expect(transactions).to.have.property(\"dateTime\");\r
+
+      \        pm.expect(transactions.dateTime).to.be.a(\"string\")\r
+
+      \    });\r
+
+      });"
+    language: text/javascript
+order: 4329481475168520
